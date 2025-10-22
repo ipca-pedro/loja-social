@@ -1,17 +1,55 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const pool = require('../db');
 const router = express.Router();
 
-// POST /api/auth/login - Login dos colaboradores (placeholder)
+// POST /api/auth/login - Login dos colaboradores com bcrypt
 router.post('/login', async (req, res) => {
   try {
-    // TODO: Implementar autenticação com hash de password
     const { email, password } = req.body;
     
+    // Validação básica
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email e password são obrigatórios'
+      });
+    }
+
+    // Buscar colaborador na base de dados
+    const result = await pool.query(
+      'SELECT id, nome, email, password_hash FROM colaboradores WHERE email = $1',
+      [email]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(401).json({
+        success: false,
+        message: 'Credenciais inválidas'
+      });
+    }
+
+    const colaborador = result.rows[0];
+    
+    // Comparar password com hash usando bcrypt
+    const passwordMatch = await bcrypt.compare(password, colaborador.password_hash);
+    
+    if (!passwordMatch) {
+      return res.status(401).json({
+        success: false,
+        message: 'Credenciais inválidas'
+      });
+    }
+
+    // Login bem-sucedido
     res.json({
       success: true,
-      message: 'Login placeholder - implementar autenticação',
-      data: { token: 'placeholder_token' }
+      message: 'Login realizado com sucesso',
+      data: {
+        id: colaborador.id,
+        nome: colaborador.nome,
+        email: colaborador.email
+      }
     });
   } catch (error) {
     console.error('Erro no login:', error);
