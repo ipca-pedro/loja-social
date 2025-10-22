@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # Serviço da Base de Dados PostgreSQL
+  db:
+    image: postgres:15-alpine
+    container_name: loja_social_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: loja_social_db
+      POSTGRES_USER: loja_social_user
+      POSTGRES_PASSWORD: loja_social_password
+    volumes:
+      # Inicializar BD com o esquema
+      - ./bd_lojasocial.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      # Persistir dados da BD
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - loja_social_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U loja_social_user -d loja_social_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Serviço da API Node.js
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: loja_social_api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgresql://loja_social_user:loja_social_password@db:5432/loja_social_db
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - loja_social_network
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+# Volumes para persistência de dados
+volumes:
+  postgres_data:
+    driver: local
+
+# Rede interna para comunicação entre serviços
+networks:
+  loja_social_network:
+    driver: bridge
