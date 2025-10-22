@@ -55,7 +55,7 @@ const App = () => {
 
   return (
     // Container principal com altura mínima de tela completa
-    <div className="bg-gray-50 font-sans min-h-screen">
+    <div className="bg-white font-sans min-h-screen antialiased">
       {/* 
         Navbar fixa com props para controlo de estado
         Implementa o padrão "Controlled Component"
@@ -69,7 +69,7 @@ const App = () => {
         Conteúdo principal com padding-top para compensar navbar fixa
         Renderiza dinamicamente a página ativa
       */}
-      <main className="pt-16">
+      <main className="pt-20">
         {renderPage()}
       </main>
       

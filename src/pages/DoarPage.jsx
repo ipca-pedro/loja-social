@@ -109,89 +109,188 @@ const DoarPage = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Informações de Doação */}
-        <div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">Como Doar</h1>
-          <div className="bg-white rounded-lg shadow-md p-8">
-            <h3 className="text-xl font-semibold text-green-700 mb-4">Local de Entrega</h3>
-            <p className="text-gray-700 mb-4">
-              Edifício dos SAS - Campus do IPCA<br />
-              Lugar do Aldão, 4750-810 Barcelos
-            </p>
-            
-            <h3 className="text-xl font-semibold text-green-700 mb-4">Horário</h3>
-            <p className="text-gray-700 mb-4">Segunda a Sexta: 9h00 - 17h00</p>
-            
-            <h3 className="text-xl font-semibold text-green-700 mb-4">Produtos Aceites</h3>
-            <ul className="text-gray-700 list-disc list-inside space-y-1">
-              <li>Produtos alimentares não perecíveis</li>
-              <li>Produtos de higiene pessoal</li>
-              <li>Material escolar</li>
-              <li>Vestuário em bom estado</li>
-            </ul>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-r from-green-600 to-green-700 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            Como Doar
+          </h1>
+          <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+            A sua contribuição faz a diferença na vida dos nossos estudantes
+          </p>
         </div>
+      </div>
 
-        {/* Formulário de Contacto */}
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Entre em Contacto</h2>
-          <div className="bg-white rounded-lg shadow-md p-8">
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Nome</label>
-                <input
-                  type="text"
-                  name="nome"
-                  value={formData.nome}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
+      <div className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Informações de Doação */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Informações Importantes</h2>
               </div>
               
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
+              {/* Local de Entrega */}
+              <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">Local de Entrega</h3>
+                </div>
+                <div className="space-y-2 text-gray-700">
+                  <p className="font-medium">Edifício dos SAS - Campus do IPCA</p>
+                  <p>Lugar do Aldão</p>
+                  <p>4750-810 Barcelos</p>
+                </div>
               </div>
               
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Mensagem *</label>
-                <textarea
-                  name="mensagem"
-                  value={formData.mensagem}
-                  onChange={handleInputChange}
-                  rows="4"
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
+              {/* Horário */}
+              <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">Horário de Funcionamento</h3>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span className="text-gray-600">Segunda a Sexta</span>
+                    <span className="font-semibold text-gray-900">9h00 - 17h00</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-gray-600">Fim de Semana</span>
+                    <span className="text-red-600 font-medium">Encerrado</span>
+                  </div>
+                </div>
               </div>
               
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-green-700 text-white py-2 px-4 rounded-lg hover:bg-green-800 transition-colors font-medium disabled:opacity-50"
-              >
-                {loading ? 'A enviar...' : 'Enviar Mensagem'}
-              </button>
-            </form>
-            
-            {feedback.message && (
-              <div className={`mt-4 p-4 rounded-lg ${
-                feedback.type === 'success' 
-                  ? 'bg-green-100 border border-green-400 text-green-700'
-                  : 'bg-red-100 border border-red-400 text-red-700'
-              }`}>
-                {feedback.message}
+              {/* Produtos Aceites */}
+              <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">Produtos Aceites</h3>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    'Produtos alimentares não perecíveis',
+                    'Produtos de higiene pessoal',
+                    'Material escolar',
+                    'Vestuário em bom estado'
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-gray-700">{item}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            )}
+            </div>
+
+            {/* Formulário de Contacto */}
+            <div>
+              <div className="sticky top-24">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Entre em Contacto</h2>
+                <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-3">Nome</label>
+                      <input
+                        type="text"
+                        name="nome"
+                        value={formData.nome}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 hover:border-gray-300"
+                        placeholder="O seu nome completo"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-3">
+                        Email *
+                        <span className="text-red-500 ml-1">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 hover:border-gray-300"
+                        placeholder="exemplo@email.com"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-3">
+                        Mensagem *
+                        <span className="text-red-500 ml-1">*</span>
+                      </label>
+                      <textarea
+                        name="mensagem"
+                        value={formData.mensagem}
+                        onChange={handleInputChange}
+                        rows="5"
+                        required
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 hover:border-gray-300 resize-none"
+                        placeholder="Escreva a sua mensagem aqui..."
+                      />
+                    </div>
+                    
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-4 px-6 rounded-xl hover:from-green-700 hover:to-green-800 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                    >
+                      {loading ? (
+                        <>
+                          <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+                          <span>A enviar...</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                          </svg>
+                          <span>Enviar Mensagem</span>
+                        </>
+                      )}
+                    </button>
+                  </form>
+                  
+                  {feedback.message && (
+                    <div className={`mt-6 p-4 rounded-xl border-2 ${
+                      feedback.type === 'success' 
+                        ? 'bg-green-50 border-green-200 text-green-800'
+                        : 'bg-red-50 border-red-200 text-red-800'
+                    }`}>
+                      <div className="flex items-center space-x-2">
+                        {feedback.type === 'success' ? (
+                          <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        ) : (
+                          <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        )}
+                        <span className="font-medium">{feedback.message}</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
